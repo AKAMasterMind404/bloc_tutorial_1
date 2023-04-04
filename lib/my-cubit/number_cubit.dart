@@ -32,19 +32,31 @@ class _NumberAppView extends StatelessWidget {
       floatingActionButton: Row(
         children: [
           FloatingActionButton(onPressed: () async {
-            context.read<NumberCubit>().add();
+            final cubit = context.read<NumberCubit>();
+            if(cubit.state.productsStatus == NumberRequest.requestInProgress) {
+              print("Hold UP!");
+              return;
+            }
+
+            cubit.add();
           }, child: const Icon(Icons.add)),
           FloatingActionButton(
               onPressed: () async {
-                context.read<NumberCubit>().subtract();
+                final cubit = context.read<NumberCubit>();
+                if(cubit.state.productsStatus == NumberRequest.requestInProgress) {
+                  print("Hold UP!");
+                  return;
+                }
+
+                cubit.subtract();
               }, child: const Icon(Icons.remove)),
         ],
       ),
       body: Center(
         child: BlocConsumer<NumberCubit, NumberState>(
-          listenWhen: (previous, current) {
-            return true;
-          },
+          // listenWhen: (previous, current) {
+          //   return previous.number != current.number;
+          // },
           listener: (context, state) {},
           builder: (context, state) {
             int number = context.read<NumberCubit>().state.number;
