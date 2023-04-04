@@ -31,25 +31,30 @@ class _NumberAppView extends StatelessWidget {
     return Scaffold(
       floatingActionButton: Row(
         children: [
-          FloatingActionButton(onPressed: () async {
-            final cubit = context.read<NumberCubit>();
-            if(cubit.state.productsStatus == NumberRequest.requestInProgress) {
-              print("Hold UP!");
-              return;
-            }
-
-            cubit.add();
-          }, child: const Icon(Icons.add)),
           FloatingActionButton(
               onPressed: () async {
                 final cubit = context.read<NumberCubit>();
-                if(cubit.state.productsStatus == NumberRequest.requestInProgress) {
+                if (cubit.state.productsStatus ==
+                    NumberRequest.requestInProgress) {
+                  print("Hold UP!");
+                  return;
+                }
+
+                cubit.add();
+              },
+              child: const Icon(Icons.add)),
+          FloatingActionButton(
+              onPressed: () async {
+                final cubit = context.read<NumberCubit>();
+                if (cubit.state.productsStatus ==
+                    NumberRequest.requestInProgress) {
                   print("Hold UP!");
                   return;
                 }
 
                 cubit.subtract();
-              }, child: const Icon(Icons.remove)),
+              },
+              child: const Icon(Icons.remove)),
         ],
       ),
       body: Center(
@@ -60,9 +65,10 @@ class _NumberAppView extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, state) {
             int number = context.read<NumberCubit>().state.number;
-            NumberRequest requestState = context.read<NumberCubit>().state.productsStatus;
+            NumberRequest requestState =
+                context.read<NumberCubit>().state.productsStatus;
 
-            switch(requestState) {
+            switch (requestState) {
               case NumberRequest.requestInProgress:
                 return const CircularProgressIndicator();
               case NumberRequest.requestSuccess:
