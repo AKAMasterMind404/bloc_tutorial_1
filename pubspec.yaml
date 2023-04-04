@@ -1,0 +1,22 @@
+name: flbloc_demo
+description: Source code for the `flutter_bloc` Package Of The Week tutorial
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.5 <3.0.0'
+  
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.1.1
+  dio: ^4.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
