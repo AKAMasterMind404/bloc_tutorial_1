@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("API Handling"),
+        title: const Text("API Handling"),
       ),
       body: SafeArea(
         child: BlocConsumer<PostCubit, PostState>(
@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, state) {
 
             if(state is PostLoadingState) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return buildPostListView(state.posts);
             }
 
-            return Center(
+            return const Center(
               child: Text("An error occured!"),
             );
 
